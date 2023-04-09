@@ -12,10 +12,12 @@ class AdminCreatePostController extends Controller
 {
     public function index()
     {
-        $data['kategori'] = Kategori::get();
-        $data['user'] = User::get();
-        $data['tag'] = Tag::get();
-        return view('adminCreatePost', $data );
+        // $data['kategori'] = Kategori::get();
+        // $data['user'] = User::get();
+        // $data['tag'] = Tag::get();
+        // return view('createpost', $data );
+
+        return view('createpost');
     }
 
     public function store(Request $request)
