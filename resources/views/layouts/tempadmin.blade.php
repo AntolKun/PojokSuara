@@ -64,16 +64,16 @@
 					<div class="dropdown d-inline-block">
 						<button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
 							data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<img class="rounded-circle header-profile-user" src="" alt="Header Avatar" />
-							<span class="d-none d-xl-inline-block ms-1" key="t-henry">USER TEST</span>
+							<img class="rounded-circle header-profile-user" src="{{ url('foto/', auth()->user()->foto) }}"
+								alt="Header Avatar" />
+							<span class="d-none d-xl-inline-block ms-1" key="t-henry">{{ auth()->user()->name }}</span>
 							<i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
 						</button>
 						<div class="dropdown-menu dropdown-menu-end">
-							<!-- item-->
 							<a class="dropdown-item text-primary" href="/profile"><i
 									class="bx bx-user font-size-16 align-middle me-1 text-primary"></i>
 								<span key="t-logout">Profile</span></a>
-							<a class="dropdown-item text-danger" href=""><i
+							<a class="dropdown-item text-danger" href="{{ route('actionLogout') }}"><i
 									class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>
 								<span key="t-logout">Logout</span></a>
 						</div>
@@ -149,7 +149,7 @@
 						</li>
 
 						<li>
-							<a href="/admin/manage-user" class="waves-effect">
+							<a href="/manage-user" class="waves-effect">
 								<i class="bx bx-file"></i>
 								<span key="t-file-manager">Manajemen User</span>
 							</a>
@@ -247,4 +247,5 @@
 	<!-- App js -->
 	<script src="{{ asset('skoteassets/js/app.js') }}"></script>
 </body>
+
 </html>

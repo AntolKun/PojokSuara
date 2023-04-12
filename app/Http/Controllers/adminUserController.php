@@ -11,33 +11,32 @@ class AdminUserController extends Controller
     {
         // $data = Post::all();
         //fetch data
-        $data['user'] = User::get();
+        $data["user"] = User::get();
 
-        return view('adminUser', $data);
+        return view("user", $data);
     }
 
     public function store(Request $request)
     {
         //upload image
-        $foto = $request->file('foto');
+        $foto = $request->file("foto");
         // upload file
-		$foto->move('foto', $foto->getClientOriginalName());
+        $foto->move("foto", $foto->getClientOriginalName());
         // $gambar->storeAs('pu1blic/posts', $gambar->hashName());
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'foto' => $foto->getClientOriginalName(),
-            'role' => $request->role,
-            'password' => $request->password,
-            'no_telp' => $request->no_telp,
+            "name" => $request->name,
+            "email" => $request->email,
+            "foto" => $foto->getClientOriginalName(),
+            "role" => $request->role,
+            "password" => $request->password,
         ]);
 
         if ($user) {
             //redirect to index
-            return back()->with('success', 'Data Berhasil Tersimpan');
+            return back()->with("success", "Data Berhasil Tersimpan");
         } else {
-            return back()->with('error', 'Data Gagal Tersimpan');
+            return back()->with("error", "Data Gagal Tersimpan");
         }
     }
 
@@ -49,9 +48,9 @@ class AdminUserController extends Controller
 
         if ($user) {
             //redirect to index
-            return back()->with('success', 'Data Berhasil Terhapus');
+            return back()->with("success", "Data Berhasil Terhapus");
         } else {
-            return back()->with('error', 'Data Gagal Terhapus');
+            return back()->with("error", "Data Gagal Terhapus");
         }
     }
 }
