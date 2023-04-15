@@ -11,22 +11,22 @@ class AdminKategoriController extends Controller
     {
         // $data = Post::all();
         //fetch data
-        $data['kategori'] = Kategori::get();
+        $data["kategori"] = Kategori::get();
 
-        return view('adminKategori', $data);
+        return view("kategori", $data);
     }
 
     public function store(Request $request)
     {
         $kategori = Kategori::create([
-            'kategori' => $request->kategori,
+            "kategori" => $request->kategori,
         ]);
 
         if ($kategori) {
             //redirect to index
-            return back()->with('success', 'Data Berhasil Tersimpan');
+            return back()->with("success", "Data Berhasil Tersimpan");
         } else {
-            return back()->with('error', 'Data Gagal Tersimpan');
+            return back()->with("error", "Data Gagal Tersimpan");
         }
     }
 
@@ -38,9 +38,9 @@ class AdminKategoriController extends Controller
 
         if ($kategori) {
             //redirect to index
-            return back()->with('success', 'Data Berhasil Terhapus');
+            return back()->with("success", "Data Berhasil Terhapus");
         } else {
-            return back()->with('error', 'Data Gagal Terhapus');
+            return back()->with("error", "Data Gagal Terhapus");
         }
     }
 }

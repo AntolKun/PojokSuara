@@ -11,31 +11,31 @@ class AdminCarouselController extends Controller
     {
         // $data = Post::all();
         //fetch data
-        $data['carousel'] = Carousel::get();
+        $data["carousel"] = Carousel::get();
 
-        return view('adminCarousel', $data);
+        return view("carousel", $data);
     }
 
     public function store(Request $request)
     {
         //upload image
-        $carousel = $request->file('carousel');
+        $carousel = $request->file("carousel");
         // upload file
-		$carousel->move('carousel', $carousel->getClientOriginalName());
+        $carousel->move("carousel", $carousel->getClientOriginalName());
         // $gambar->storeAs('pu1blic/posts', $gambar->hashName());
 
         //create post
         $carousel = carousel::create([
-            'carousel' => $carousel->getClientOriginalName(),
-            'judul' => $request->judul,
-            'subjudul' => $request->subjudul,
+            "carousel" => $carousel->getClientOriginalName(),
+            "judul" => $request->judul,
+            "subjudul" => $request->subjudul,
         ]);
 
         if ($carousel) {
             //redirect to index
-            return back()->with('success', 'Data Berhasil Tersimpan');
+            return back()->with("success", "Data Berhasil Tersimpan");
         } else {
-            return back()->with('error', 'Data Gagal Tersimpan');
+            return back()->with("error", "Data Gagal Tersimpan");
         }
     }
 
@@ -47,10 +47,9 @@ class AdminCarouselController extends Controller
 
         if ($carousel) {
             //redirect to index
-            return back()->with('success', 'Data Berhasil Terhapus');
+            return back()->with("success", "Data Berhasil Terhapus");
         } else {
-            return back()->with('error', 'Data Gagal Terhapus');
+            return back()->with("error", "Data Gagal Terhapus");
         }
     }
-
 }

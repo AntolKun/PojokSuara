@@ -11,22 +11,22 @@ class AdminTagController extends Controller
     {
         // $data = Post::all();
         //fetch data
-        $data['tag'] = Tag::get();
+        $data["tag"] = Tag::get();
 
-        return view('adminTag', $data);
+        return view("tag", $data);
     }
 
     public function store(Request $request)
     {
         $tag = Tag::create([
-            'tag' => $request->tag,
+            "tag" => $request->tag,
         ]);
 
         if ($tag) {
             //redirect to index
-            return back()->with('success', 'Data Berhasil Tersimpan');
+            return back()->with("success", "Data Berhasil Tersimpan");
         } else {
-            return back()->with('error', 'Data Gagal Tersimpan');
+            return back()->with("error", "Data Gagal Tersimpan");
         }
     }
 
@@ -38,9 +38,9 @@ class AdminTagController extends Controller
 
         if ($tag) {
             //redirect to index
-            return back()->with('success', 'Data Berhasil Terhapus');
+            return back()->with("success", "Data Berhasil Terhapus");
         } else {
-            return back()->with('error', 'Data Gagal Terhapus');
+            return back()->with("error", "Data Gagal Terhapus");
         }
     }
 }

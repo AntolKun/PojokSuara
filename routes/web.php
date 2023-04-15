@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdminCreatePostController;
+use App\Http\Controllers\AdminKategoriController;
+use App\Http\Controllers\AdminTagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +33,27 @@ Route::get("/post", function () {
 })
     ->middleware(["auth", "verified"])
     ->name("post");
+Route::post("/admin/postsStore", [AdminCreatePostController::class, "store"]);
+Route::delete("/admin/postsDelete/{id}", [
+    AdminPostController::class,
+    "destroy",
+]);
+Route::get("/create-posts", [AdminCreatePostController::class, "index"]);
+
+Route::get("/kategori", [AdminKategoriController::class, "index"]);
+Route::delete("kategoriDelete/{id}", [
+    AdminKategoriController::class,
+    "destroy",
+]);
+Route::post("/postsKategori", [AdminKategoriController::class, "store"]);
+
+Route::get("/tag", [AdminTagController::class, "index"]);
+Route::delete("/tagDelete/{id}", [AdminTagController::class, "destroy"]);
+Route::post("/postsTag", [AdminTagController::class, "store"]);
+
+Route::get('/carousel', [AdminCarouselController::class, 'index']);
+Route::delete('/carouselDelete/{id}', [AdminCarouselController::class, 'destroy']);
+Route::post('/postsCarousel', [AdminCarouselController::class, 'store']);
 
 Route::get("/manage-user", [AdminUserController::class, "index"])->name(
     "manageUser"
