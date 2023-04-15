@@ -11,22 +11,22 @@ class AdminBreakingController extends Controller
     {
         // $data = Post::all();
         //fetch data
-        $data['breaking'] = Breaking::get();
+        $data["breaking"] = Breaking::get();
 
-        return view('adminBreaking', $data);
+        return view("adminBreaking", $data);
     }
 
     public function store(Request $request)
     {
         $breaking = Breaking::create([
-            'breaking' => $request->breaking,
+            "breaking" => $request->breaking,
         ]);
 
         if ($breaking) {
             //redirect to index
-            return back()->with('success', 'Data Berhasil Tersimpan');
+            return back()->with("success", "Data Berhasil Tersimpan");
         } else {
-            return back()->with('error', 'Data Gagal Tersimpan');
+            return back()->with("error", "Data Gagal Tersimpan");
         }
     }
 
@@ -38,9 +38,9 @@ class AdminBreakingController extends Controller
 
         if ($breaking) {
             //redirect to index
-            return back()->with('success', 'Data Berhasil Terhapus');
+            return back()->with("success", "Data Berhasil Terhapus");
         } else {
-            return back()->with('error', 'Data Gagal Terhapus');
+            return back()->with("error", "Data Gagal Terhapus");
         }
     }
 }

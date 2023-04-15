@@ -18,17 +18,16 @@ class AdminPostController extends Controller
     {
         // $data = Post::all();
         //fetch data
-        $data['post'] = Post::where('status', true)->get();
+        $data["post"] = Post::where("status", true)->get();
+        // $data["post"] = Post::get();
 
-        //response with api
-        // return response()->json($response);
-        return view('adminPost', $data);
+        return view("post", $data);
     }
 
     public function edit(Request $id)
     {
-        $data['post'] = POST::where('id', $id)->first();
-        return view('adminEditPost', $data);
+        $data["post"] = POST::where("id", $id)->first();
+        return view("adminEditPost", $data);
     }
 
     public function destroy($id)
@@ -39,9 +38,9 @@ class AdminPostController extends Controller
 
         if ($post) {
             //redirect to index
-            return back()->with('success', 'Data Berhasil Terhapus');
+            return back()->with("success", "Data Berhasil Terhapus");
         } else {
-            return back()->with('error', 'Data Gagal Terhapus');
+            return back()->with("error", "Data Gagal Terhapus");
         }
     }
 }

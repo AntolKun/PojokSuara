@@ -57,7 +57,7 @@
                                     <div class="d-flex">
                                         <div class="flex-grow-1">
                                             <p class="text-muted fw-medium">Total Post</p>
-                                            <h4 class="mb-0">1</h4>
+                                            <h4 class="mb-0">{{ $countPost }}</h4>
                                         </div>
 
                                         <div class="flex-shrink-0 align-self-center">
@@ -77,7 +77,7 @@
                                     <div class="d-flex">
                                         <div class="flex-grow-1">
                                             <p class="text-muted fw-medium">Total Staff</p>
-                                            <h4 class="mb-0">1</h4>
+                                            <h4 class="mb-0">{{ $countUser }}</h4>
                                         </div>
 
                                         <div class="flex-shrink-0 align-self-center">

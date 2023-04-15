@@ -144,12 +144,12 @@
                             </a>
                         </li>
 
-                        <li>
+                        <!-- <li>
                             <a href="/admin/breaking" class="waves-effect">
                                 <i class="bx bx-chat"></i>
                                 <span key="t-chat">Tambah Breaking</span>
                             </a>
-                        </li>
+                        </li> -->
 
                         <li>
                             <a href="/manage-user" class="waves-effect">

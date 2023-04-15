@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminCreatePostController;
 use App\Http\Controllers\AdminKategoriController;
 use App\Http\Controllers\AdminTagController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminCarouselController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,44 +25,88 @@ Route::get("/", function () {
     return view("welcome");
 });
 
-Route::get("/dashboard", function () {
-    return view("dashboard");
-})
+// Route::get("/dashboard", function () {
+//     return view("dashboard");
+// })
+//     ->middleware(["auth", "verified"])
+//     ->name("dashboard");
+
+Route::get("/dashboard", [AdminDashboardController::class, "index"])
     ->middleware(["auth", "verified"])
     ->name("dashboard");
 
-Route::get("/post", function () {
-    return view("post");
-})
-    ->middleware(["auth", "verified"])
+Route::get("/post", [AdminPostController::class, "index"])
+    ->middleware(["auth"])
     ->name("post");
-Route::post("/admin/postsStore", [AdminCreatePostController::class, "store"]);
+
 Route::delete("/admin/postsDelete/{id}", [
     AdminPostController::class,
     "destroy",
-]);
-Route::get("/create-posts", [AdminCreatePostController::class, "index"]);
+])
+    ->middleware(["auth"])
+    ->name("postDelete");
 
-Route::get("/kategori", [AdminKategoriController::class, "index"]);
+Route::get("/create-posts", [AdminCreatePostController::class, "index"])
+    ->middleware(["auth"])
+    ->name("create-post");
+
+Route::post("/admin/postsStore", [AdminCreatePostController::class, "store"])
+    ->middleware(["auth"])
+    ->name("postStore");
+
+Route::get("/kategori", [AdminKategoriController::class, "index"])
+    ->middleware(["auth"])
+    ->name("kategori");
+
 Route::delete("kategoriDelete/{id}", [
     AdminKategoriController::class,
     "destroy",
-]);
-Route::post("/postsKategori", [AdminKategoriController::class, "store"]);
+])
+    ->middleware(["auth"])
+    ->name("kategoriDelete");
 
-Route::get("/tag", [AdminTagController::class, "index"]);
-Route::delete("/tagDelete/{id}", [AdminTagController::class, "destroy"]);
-Route::post("/postsTag", [AdminTagController::class, "store"]);
+Route::post("/postsKategori", [AdminKategoriController::class, "store"])
+    ->middleware(["auth"])
+    ->name("postKategori");
 
-Route::get('/carousel', [AdminCarouselController::class, 'index']);
-Route::delete('/carouselDelete/{id}', [AdminCarouselController::class, 'destroy']);
-Route::post('/postsCarousel', [AdminCarouselController::class, 'store']);
+Route::get("/tag", [AdminTagController::class, "index"])
+    ->middleware(["auth"])
+    ->name("tag");
 
-Route::get("/manage-user", [AdminUserController::class, "index"])->name(
-    "manageUser"
-);
-Route::post("/postsUser", [AdminUserController::class, "store"]);
-Route::delete("/userDelete/{id}", [AdminUserController::class, "destroy"]);
+Route::delete("/tagDelete/{id}", [AdminTagController::class, "destroy"])
+    ->middleware(["auth"])
+    ->name("tagDelete");
+
+Route::post("/postsTag", [AdminTagController::class, "store"])
+    ->middleware(["auth"])
+    ->name("postTag");
+
+Route::get("/carousel", [AdminCarouselController::class, "index"])
+    ->middleware(["auth"])
+    ->name("carousel");
+
+Route::delete("/carouselDelete/{id}", [
+    AdminCarouselController::class,
+    "destroy",
+])
+    ->middleware(["auth"])
+    ->name("carouselDelete");
+
+Route::post("/postsCarousel", [AdminCarouselController::class, "store"])
+    ->middleware(["auth"])
+    ->name("postCarousel");
+
+Route::get("/manage-user", [AdminUserController::class, "index"])
+    ->middleware(["auth"])
+    ->name("manage-user");
+
+Route::post("/postsUser", [AdminUserController::class, "store"])
+    ->middleware(["auth"])
+    ->name("postUser");
+
+Route::delete("/userDelete/{id}", [AdminUserController::class, "destroy"])
+    ->middleware(["auth"])
+    ->name("UserDelete");
 
 Route::get("actionLogout", [ProfileController::class, "actionLogout"])
     ->name("actionLogout")

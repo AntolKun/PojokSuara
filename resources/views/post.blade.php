@@ -39,26 +39,32 @@
 									</thead>
 
 									<tbody>
+										@foreach ($post as $pt)
 										<tr>
-											<td>Pascol Ngakak</td>
-											<td>12-12-12</td>
-											<td>Nasional</td>
+											<td>{{ $pt->judul }}</td>
+											<td>{{ $pt->tanggal }}</td>
+											<td>{{ $pt->kategori }}</td>
 											<td>
+												@if ($pt->status == true)
 												<span class="badge bg-success">
 													Published
 												</span>
+												@endif
 											</td>
-											<td><img src="" alt="" width="100px"></td>
-											<td>TEST</td>
+											<td><img src="{{ url('posts/', $pt->gambar) }}" alt="" width="100px"></td>
+											<td>{{ $pt->user }}</td>
 											<td>
 												<div class="row-12">
 													<!-- <button type="button" class="btn btn-primary waves-effect waves-light">Edit</button> -->
-													<form action="" method="POST">
+													<form action="/admin/postsDelete/{{ $pt->id }}" method="POST">
+														@csrf
+														@method("DELETE")
 														<button type="submit" class="btn btn-danger waves-effect waves-light">Hapus</button>
 													</form>
 												</div>
 											</td>
 										</tr>
+										@endforeach
 									</tbody>
 								</table>
 							</div>
